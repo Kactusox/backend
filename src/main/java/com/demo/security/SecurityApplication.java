@@ -19,7 +19,11 @@ public class SecurityApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
+				registry.addMapping("/**") // Allow all endpoints
+						.allowedOrigins("https://testfrontend-theta.vercel.app") // Allow your frontend origin
+						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allow specific HTTP methods
+						.allowedHeaders("*") // Allow all headers
+						.allowCredentials(true); // Allow cookies or credentials if needed
 			}
 		};
 	}
